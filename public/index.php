@@ -18,7 +18,7 @@ Connexion PDO
 */
 try {
     // instanciation de la connexion PDO
-    $db = new PDO(DB_DRIVER . ":host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET . ";port=" . DB_PORT, DB_LOGIN, DB_PWD);
+    $db = new PDO(MY_DB_DRIVER .":host=" . MY_DB_HOST . ";dbname=". MY_DB_NAME .";charset=" . MY_DB_CHARSET . ";port=". MY_DB_PORT, MY_DB_LOGIN, MY_DB_PWD);
 
     // on met l'attribut en FETCH_ASSOC
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
