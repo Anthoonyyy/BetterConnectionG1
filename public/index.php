@@ -21,8 +21,11 @@ try {
 
 // chargement des catégories pour le menu
 $menuSlug = getAllCategoriesBySlug($db);
+
+//Chargement des news pour la page d'accueil
 $news = getAllNews($db);
 
+var_dump($news);
 // var_dump($menuSlug);
 
 /*
