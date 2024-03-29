@@ -41,3 +41,22 @@ function getAllNewsHomePage(PDO $connect): array|string
     }
 
 }
+
+
+function cutTheText(string $text,$nbCharacter = 200, $cutWord = false) : string 
+{
+    //on coupe à la longueur indiqué
+    $output = substr($text,0,$nbCharacter);
+
+    //Si on ne souhaite pas couper dans un mot
+    if($cutWord===false){
+        //On prend la position du dernier espace dans la chaine  
+        $lastSpace = strrpos( $output," ");
+
+        //on recoupe la chaine pour l'envoie
+        $output = substr($output,0,$lastSpace);
+    } 
+
+
+    return $output;
+}
