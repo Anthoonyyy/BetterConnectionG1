@@ -39,12 +39,22 @@ require_once "menu.view.php";
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <!-- Post preview-->
                     <div class="post-preview">
-                        
+                    <div>
                         <?php
-                        foreach($news as $new):
+                        foreach($newsHomepage as $new):
                              ?>
                             <h2 class="post-title"><a href="?section=<?=$new['slug']?>"><?=$new['title']?></h2>
-                            <h3 class="post-subtitle"><a href="?section=<?=$new['slug']?>"><?=substr($new['content'],0,250)?></h3>
+                            <h5 class="post-subtitle"><a href="?section=<?=$new['slug']?>"><?=substr($new['content'],0,250)?></h5>
+                            <?php
+                            $categ_slug = explode("|||",$new['categ_slug']);
+                            $categ_title = explode("|||",$new['categ_title']);
+                            foreach($categ_slug as $key => $value)
+                            ?>
+                        <a href="?section=<?=$value?>"><?=$categ_slug[$key]?></a>
+                        <?php
+                        endforeach;
+                        ?>
+                    </div>
                         
                         <p class="post-meta">
                             Posted by
@@ -54,9 +64,7 @@ require_once "menu.view.php";
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />
-                    <?php
-                        endforeach;
-                            ?>
+                    
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="post.html"><h2 class="post-title"></h2></a>

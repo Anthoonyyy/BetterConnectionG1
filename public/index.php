@@ -22,18 +22,11 @@ try {
 // chargement des catégories pour le menu
 $menuSlug = getAllCategoriesBySlug($db);
 
-<<<<<<< HEAD
 // chargement des news pour la page d'accueil
 $newsHomepage = getAllNewsHomePage($db);
 
-=======
-//Chargement des news pour la page d'accueil
-$news = getAllNews($db);
-
-var_dump($news);
->>>>>>> 82461f22c8884a85562b2dbf8e90da856574885b
 // var_dump($menuSlug);
-var_dump($newsHomepage);
+//var_dump($newsHomepage);
 
 /*
 Appel de la vue
