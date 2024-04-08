@@ -43,7 +43,7 @@ Merci au site https://fr.wikipedia.org/wiki/Astronomie pour les exemples d'artic
 - Création du contrôleur frontal
     - Import du fichier `config.php`
     - Création d'une connexion PDO avec try catch
-    - requête qui séléctionne tous les articles avec les auteurs (si existant)
+    - requête qui sélectionne tous les articles avec les auteurs (si existant)
     - affichage dans une boucle while ou foreach des résultats
 
 ### Merci à tous!
@@ -54,3 +54,11 @@ Dans model/NewsModel.php, créez une fonction qui va charger toutes les News pub
 
 
 Affichez ces articles à la place des faux articles ci-dessous
+
+### EXE3
+
+Si on se trouve dans une section, `if(isset($_GET['section'])){`, il faut créer une requête pour le titre et la description de la section (requête préparée dans CategoryModel car slug variable).
+
+Puis charger les articles se trouvant dans la section (comme pour l'accueil), mais avec le slug de la section comme variable (requête préparée dans NewsModel car slug variable). ! Les catégories de l'articles devraient toutes être présente en dessous de celui-ci (voir homepage)
+
+Si pas d'article, écrivez: "Pas encore d'articles" !

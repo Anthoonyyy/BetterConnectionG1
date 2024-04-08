@@ -22,16 +22,51 @@ try {
 // chargement des catégories pour le menu
 $menuSlug = getAllCategoriesBySlug($db);
 
-// chargement des news pour la page d'accueil
-$newsHomepage = getAllNewsHomePage($db);
+//var_dump($titleDescription);
 
-// var_dump($menuSlug);
-//var_dump($newsHomepage);
+// router temporaire
+if(isset($_GET['section'])){
 
+        // récupération/ protection de la variable slug de category
+        $categ = htmlspecialchars(strip_tags(trim($_GET['section'])),ENT_QUOTES);
+
+        $category = getCategoryBySlug($db,$categ);
+
+        // si on récupere du texte
+        if(is_string($category)){
+            //on a une erreur sql, on peut l'afficher mais pas nécessaire
+            $message = $category;
+            //si on récupere false, la rubrique n'existe pas
+        }elseif($category===false){
+            $message = "Rubrique inconnue";
+            include_once "../view/404.view.php";
+            //fermeture de connexio,
+            $db = null;
+            //arrêt du script
+            exit();
+        }
+
+        /*
+        Appel de la vue
+        */
+        include_once "../view/section.view.php";
+}else{
 /*
-Appel de la vue
+homepage
 */
-include_once "../view/homepage.view.php";
+        
+
+        // chargement des news pour la page d'accueil
+        $newsHomepage = getAllNewsHomePage($db);
+
+        // var_dump($menuSlug);
+        // var_dump($newsHomepage);
+
+        /*
+        Appel de la vue
+        */
+        include_once "../view/homepage.view.php";
+}
 
 //Fermeture de connexion
 

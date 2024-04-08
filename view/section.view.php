@@ -25,6 +25,7 @@ require_once "menu.view.php";
                         <div class="site-heading">
                             <h1>homepage</h1>
                             <span class="subheading">Notre page d'accueil</span>
+                            <p>Du blabla</p>
                         </div>
                     </div>
                 </div>
@@ -35,6 +36,7 @@ require_once "menu.view.php";
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <?php
+                    if(isset($message)) echo $message;
                     foreach($newsHomepage as $item):
                     ?>
                     <!-- Post preview-->
