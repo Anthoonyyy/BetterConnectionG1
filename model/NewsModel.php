@@ -50,13 +50,41 @@ function getAllNewsHomePage(PDO $connect): array|string
 
 }
 
-function getTitleAndDescription(PDO $connect) 
+function getNewsFromCategorySlug(PDO $db, string $slug): array|string
 {
-    $sql = "SELECT `category`.`title`, `category`.`description` FROM category";
-    $query = $connect->query($sql);
-    $result = $query->fetchAll();
-    $query->closeCursor();
+    $sql = "SELECT n.`title`, n.`slug`, SUBSTRING(n.`content`, 1, 260) AS content, n.`date_published`, 
+    u.`login`, u.`thename`,
+    -- champs de category concaténés
+   c.`title` AS categ_title,
+   c.`slug` AS categ_slug 
+    FROM `news` n
+    LEFT JOIN `user` u
+    ON n.`user_iduser` = u.`iduser`
+-- on va sélectionner les champs title (as categ_title) et slug (as categ_slug) de la table category dans tout les cas
+   INNER JOIN `news_has_category` h
+    ON h.`news_idnews` = n.`idnews`
+     LEFT JOIN `category` c
+    ON h.`category_idcategory` = c.`idcategory`
+
+
+-- Condition de récupération
+    WHERE n.`is_published` = 1 AND c.slug = ?
+-- on groupe par la clef de la table du FROM (news)
+     
+    ORDER BY n.`date_published` DESC
+
+;";
+
+$prepare = $db->prepare($sql);
+
+try{
+    $prepare->execute([$slug]);
+    $result = $prepare->fetchAll();
+    $prepare->closeCursor();
     return $result;
+}catch(Exception $e){}
+    return $e->getMessage();
+
 
 }
 

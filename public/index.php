@@ -46,6 +46,11 @@ if(isset($_GET['section'])){
             exit();
         }
 
+        //chargement des news de la catégorie actuelle via son slug
+        $newsInfoSection = getNewsFromCategorySlug($db,$categ);
+        if(empty($newsInfoSection)){
+            $message = "Pas encore d'articles dans cette section";
+        }
         /*
         Appel de la vue
         */

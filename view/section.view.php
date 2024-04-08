@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <title>BetterConnection | homepage</title>
+    <title>BetterConnection | <?=$category['title']?></title>
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -37,7 +37,7 @@ require_once "menu.view.php";
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <?php
                     if(isset($message)) echo $message;
-                    foreach($newsHomepage as $item):
+                    foreach($newsInfoSection as $item):
                     ?>
                     <!-- Post preview-->
                     <div class="post-preview">
